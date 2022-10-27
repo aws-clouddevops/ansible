@@ -5,7 +5,7 @@
       ansible.builtin.debug: 
         msg: Hello to CentOs
 
-      when: ansible_distribution == "CentOs"
+      when: ansible_distribution == "CentOS"
 
     - name: Run this when the Os is Ubuntu
       ansible.builtin.debug:
