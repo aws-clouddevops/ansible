@@ -8,5 +8,5 @@
         msg: url that we print is {{URL}}
 
     - name: Printing URL with quotes
-      ansible.duiltin.debug:
+      ansible.builtin.debug:
         msg: url = {{URL}}
