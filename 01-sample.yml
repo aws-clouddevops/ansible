@@ -5,10 +5,6 @@
      ansible.builtin.debug:
         msg: hai from the task1 of play1
 
-   - name: Print hello from play1
-      ansible.builtin.debug:
-        msg: hai from the task2 of play1
-
 - name: Playbook namee is Play2
   hosts: all
   tasks:
