@@ -5,7 +5,7 @@
   vars_prompt:
       - name: URL
         prompt: Enter URL
-        private: no
+        private: no # if this is not given (private) then what ever we enter in the prompt is not visible
   tasks: 
     - name: Printing URL
       ansible.builtin.debug:

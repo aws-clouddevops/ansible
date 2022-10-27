@@ -1,0 +1,6 @@
+- name: Demo on facts
+  hosts: all # all is default group in inventory file which includes everything
+  tasks: 
+    - name: Printing URL
+      ansible.builtin.debug:
+        msg: OS Distro is {{ansible_distribution}}
