@@ -1,0 +1,10 @@
+- name: Demo on ignore errors
+  hosts: all # all is default group in inventory file which includes everything
+  tasks: 
+    - name: Check tomcat is running or not
+      ansible.builtin.shell: ps -ef |grep java |grep -v grep 
+      ignore_errors: yes
+
+    - name: Performing start
+      ansible.builtin.debug:
+        msg: Starting tomcat
