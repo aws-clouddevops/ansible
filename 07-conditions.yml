@@ -1,0 +1,13 @@
+- name: Demo on Conditions
+  hosts: all # all is default group in inventory file which includes everything
+  tasks: 
+    - name: Run this when the OS is CentOs
+      ansible.builtin.debug: 
+        msg: Hello to CentOs
+
+      when: ansible_distribution == "CentOs"
+
+    - name: Run this when the Os is Ubuntu
+      ansible.builtin.debug:
+        msg: Hello to Ubuntu
+      when: ansible_distribution == "Ubuntu"
