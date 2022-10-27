@@ -1,0 +1,8 @@
+- name: Demo on Copy
+  hosts: all # all is default group in inventory file which includes everything
+  tasks: 
+    - name: copy the file 
+      ansible.builtin.copy:
+        src: /home/centos/copy-file.txt
+        dest: /home/centos/copied.txt
+        
