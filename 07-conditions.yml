@@ -2,6 +2,7 @@
   hosts: all # all is default group in inventory file which includes everything
   vars:
     epic: true
+    actor: true 
   tasks: 
     - name: Run this when the OS is CentOs
       ansible.builtin.debug: 
@@ -14,7 +15,12 @@
         msg: Hello to Ubuntu
       when: ansible_distribution == "Ubuntu"
 
-    - name: Only executes when the epic is true
+    # - name: Only executes when the epic is true
+    #   ansible.builtin.debug:
+    #     msg: In this world we are just star dust 
+    #   when: epic
+
+    - name: Run this when the Actor is defined
       ansible.builtin.debug:
-        msg: In this world we are just star dust 
-      when: epic
+        msg: Actor is declared
+      when: actor is defined
