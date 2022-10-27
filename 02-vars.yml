@@ -1,0 +1,12 @@
+- name: Demo on variables
+  hosts: all # all is default group in inventory file which includes everything
+  vars: 
+      URL: play.google.com
+  tasks: 
+    - name: Printing URL
+      ansible.duiltin.debug:
+        msg: url that we print is {{URL}}
+
+    - name: Printing URL with quotes
+      ansible.duiltin.debug:
+        msg: url = {{URL}}
