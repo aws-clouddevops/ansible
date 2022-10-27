@@ -4,7 +4,7 @@
       URL: play.google.com
   tasks: 
     - name: Printing URL
-      ansible.duiltin.debug:
+      ansible.builtin.debug:
         msg: url that we print is {{URL}}
 
     - name: Printing URL with quotes
