@@ -1,0 +1,20 @@
+- name: Demo on variables
+  hosts: all
+  vars:
+      URL: play.google.com
+  vars_files:
+      - dev-vars.yml
+  tasks: 
+    - name: Printing URL
+      ansible.builtin.debug:
+        msg: url that we print is {{URL}}
+
+    - name: Printing URL with quotes
+      ansible.builtin.debug:
+        msg: url = "{{URL}}"
+      vars:
+        URL: task.google.com
+
+    - name: Printing url from cli
+      ansible.builtin.debug:
+        msg: URL_CLI is {{CLI_URL}}

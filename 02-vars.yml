@@ -22,3 +22,6 @@
 # Local variable has higher presidency than Global variables
 # Than local variables command line variables have higher presidence
 # {{URL}}   : This is how we print a variable
+# ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 02-vars.yml - to run the playbook
+# ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e CLI_URL=cli.google.com  02-vars.yml - supply of command line variable
+# Printing an underdefined variable throws you exception
