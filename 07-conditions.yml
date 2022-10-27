@@ -1,7 +1,7 @@
 - name: Demo on Conditions
   hosts: all # all is default group in inventory file which includes everything
   vars:
-    epic: true
+    # epic: true
     actor: true 
   tasks: 
     - name: Run this when the OS is CentOs
