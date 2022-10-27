@@ -18,3 +18,6 @@
     - name: Printing url from cli
       ansible.builtin.debug:
         msg: URL_CLI is {{CLI_URL}}
+
+  # file variables have more presidency than global variables
+  # CLI variables > Local variables > File variables > prompt variables > Global variables

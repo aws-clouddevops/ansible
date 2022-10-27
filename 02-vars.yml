@@ -2,6 +2,10 @@
   hosts: all # all is default group in inventory file which includes everything
   vars: # Global Variable
       URL: play.google.com
+  vars_prompt:
+      - name: URL
+        prompt: Enter URL
+        private: no
   tasks: 
     - name: Printing URL
       ansible.builtin.debug:
@@ -21,7 +25,10 @@
 # when the variable is the start of the line or the only one in the print list
 # Local variable has higher presidency than Global variables
 # Than local variables command line variables have higher presidence
+### CLI variables > Local variables > File variables > prompt variables > Global variables
 # {{URL}}   : This is how we print a variable
 # ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 02-vars.yml - to run the playbook
 # ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e CLI_URL=cli.google.com  02-vars.yml - supply of command line variable
 # Printing an underdefined variable throws you exception
+# file variables have more presidency than global variables
+# Prompt variables : read -p 
