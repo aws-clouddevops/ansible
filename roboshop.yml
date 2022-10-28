@@ -1,5 +1,5 @@
-- name: Roboshop project setup
+- name: Roboshop project
   hosts: frontend
-  become: yes
+  become: yes # Privelage escalation
   roles:
-    -frontend
+    - frontend
