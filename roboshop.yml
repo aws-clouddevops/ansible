@@ -1,5 +1,5 @@
 - name: Roboshop project
-  hosts: frontend
+  hosts: {{COMPONENT}}
   become: yes # Privelage escalation
   roles:
-    - frontend
+    - {{COMPONENT}}
