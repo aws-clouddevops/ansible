@@ -30,10 +30,10 @@
   community.mongodb.mongodb_shell:
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes 
-  loop:
-      - catalogue 
-      - users
+  loop: #with item is the key word for loop earlier now its loop itself
 
+      - catalogue 
+      - user
 
 
 # - name: Loading cataloge schema
