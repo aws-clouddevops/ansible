@@ -33,11 +33,10 @@
 
   become_user: "{{APPUSER}}"
 
-- name: Install NodeJS packages based on package.json file 
+- name: Install packages based on package.json.
   community.general.npm:
-    path: /home/{{APPUSER}}/{{COMPONENT}}/
-    state: present
-  
+    path: /home/roboshop/catalogue/
+
 - name: Copying systemd file 
   ansible.builtin.copy:
     src: systemd.service
