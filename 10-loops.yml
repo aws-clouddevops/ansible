@@ -1,0 +1,10 @@
+- name: Loops sample example
+  hosts: all 
+  tasks:
+    - name: print course name
+      ansible.builtin.debug:
+        msg: Course Name is???
+      loop:
+        - aws
+        - gcp
+        - azure
