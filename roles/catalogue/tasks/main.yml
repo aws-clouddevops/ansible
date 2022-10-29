@@ -35,13 +35,13 @@
 
 - name: Install NodeJS packages based on package.json file 
   community.general.npm:
-    path: /home/{{APPUSER}}/{{COMPONENT}}/systemd.service 
+    path: /home/{{APPUSER}}/{{COMPONENT}}/
 
   
 - name: Copying systemd file 
   ansible.builtin.copy:
     src: systemd.service
-    dest: /etc/systemd/system/component.service
+    dest: /etc/systemd/system/catalogue.service
 
 - name: Starting {{COMPONENT}} Service
   ansible.builtin.systemd:
