@@ -33,7 +33,7 @@
 
   become_user: "{{APPUSER}}"
 
-- name: Install NodeJS packages based on package.js file 
+- name: Install NodeJS packages based on package.json file 
   community.general.npm:
     path: /home/{{APPUSER}}/{{COMPONENT}}/ 
 
