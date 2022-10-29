@@ -30,5 +30,8 @@
     src: /tmp/{{COMPONENT}}-main/
     dest: /home/{{APPUSER}}/{{COMPONENT}}
     remote_src: yes
+    
+  become_user: "{{APPUSER}}"
+  
 
 
