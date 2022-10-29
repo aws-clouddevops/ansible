@@ -36,7 +36,7 @@
 - name: Install NodeJS packages based on package.json file 
   community.general.npm:
     path: /home/{{APPUSER}}/{{COMPONENT}}/
-
+    state: present
   
 - name: Copying systemd file 
   ansible.builtin.copy:
