@@ -68,7 +68,7 @@
     login_user: root
     login_password: Roboshop@1
     name: all
-    target: /tmp/mysql-main/shipping-sql
+    target: /tmp/mysql-main/shipping.sql
 
 
 # This task should only execute if the above task is a failure
