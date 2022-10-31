@@ -32,4 +32,15 @@
   register: DEFAULT_ROOT_PASSWORD
   when: mysql_stat.failed
 
+- name: Copy the SQL password command file
+  ansible.builtin.copy:
+    src: rootpassword.sql
+    dest: /tmp/rootpassword.sql
+  when: mysql_stat.failed
+
+- name: Changing the password
+  ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" </tmp/rootpassword.sql
+  when: mysql_stat.failed 
+
+
   
