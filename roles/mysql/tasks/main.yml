@@ -25,22 +25,68 @@
   ignore_errors: yes
   register: mysql_stat
 
+- name: Reset password
+  when: mysql_stat.failed
+  block:
+    - name: Reset password
+      ansible.builtin.shell: grep "temporary" /var/log/mysqld.log | head -n 1 | awk -F " " '{print $NF}'
+      register: DEFAULT_ROOT_PASSWORD
+
+    - name: Copy the SQL password command file
+      ansible.builtin.copy:
+        src: rootpassword.sql
+        dest: /tmp/rootpassword.sql
+    - name: Changing the password
+      ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" </tmp/rootpassword.sql
+
+- name: Checking the validate_password plugin
+  ansible.builtin.shell: echo show plugins | mysql -rroot -pRoboshop@1 | grep validate_password
+  register: PLUGIN_INFO
+  ignore_errors: yes
+
+# This task will be executed if the above task is a failure: whichmeans the plugin exists
+
+- name: Uninstall the plugin
+  when: PLUGIN_INFO.rc == 0
+  block:
+    - name: Copy the SQL Uninstall password plugin file
+      ansible.builtin.copy:
+      src: password-validate.sql
+      dest: /tmp/password-validate.sql
+
+    - name: Uninstalling the plugin
+      ansible.builtin.shell: mysql --connect-expired-password -uroot -pRoboshop@1 < /tmp/password-validate.sql 
+
+- name: Donwload and extract {{COMPONENT}}
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download-and-extract # if you do notmention this, by default it calls main.yml
+
+- name: Load the {{COMPONENT}} schema
+  community.mysql.mysql_db:
+    state: import
+    login_user: root
+    login_password: Roboshop@1
+    name: all
+    target: /tmp/mysql-main/shipping-sql
+    
+
 # This task should only execute if the above task is a failure
 
-- name: Reset password
-  ansible.builtin.shell: grep "temporary" /var/log/mysqld.log | head -n 1 | awk -F " " '{print $NF}'
-  register: DEFAULT_ROOT_PASSWORD
-  when: mysql_stat.failed
+# - name: Reset password
+#   ansible.builtin.shell: grep "temporary" /var/log/mysqld.log | head -n 1 | awk -F " " '{print $NF}'
+#   register: DEFAULT_ROOT_PASSWORD
+#   when: mysql_stat.failed
 
-- name: Copy the SQL password command file
-  ansible.builtin.copy:
-    src: rootpassword.sql
-    dest: /tmp/rootpassword.sql
-  when: mysql_stat.failed
+# - name: Copy the SQL password command file
+#   ansible.builtin.copy:
+#     src: rootpassword.sql
+#     dest: /tmp/rootpassword.sql
+#   when: mysql_stat.failed
 
-- name: Changing the password
-  ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" </tmp/rootpassword.sql
-  when: mysql_stat.failed 
+# - name: Changing the password
+#   ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" </tmp/rootpassword.sql
+#   when: mysql_stat.failed 
 
 
   
