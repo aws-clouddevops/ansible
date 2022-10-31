@@ -8,7 +8,7 @@
     name:
       - mysql-community-server
       - MYSQL-python
-    state: installed
+    state: present
     
 - name: Starting {{COMPONENT}} Service 
   ansible.builtin.service:
