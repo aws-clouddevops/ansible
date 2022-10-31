@@ -51,8 +51,8 @@
   block:
     - name: Copy the SQL Uninstall password plugin file
       ansible.builtin.copy:
-      src: password-validate.sql
-      dest: /tmp/password-validate.sql
+        src: password-validate.sql
+        dest: /tmp/password-validate.sql
 
     - name: Uninstalling the plugin
       ansible.builtin.shell: mysql --connect-expired-password -uroot -pRoboshop@1 < /tmp/password-validate.sql 
@@ -69,7 +69,7 @@
     login_password: Roboshop@1
     name: all
     target: /tmp/mysql-main/shipping-sql
-    
+
 
 # This task should only execute if the above task is a failure
 
