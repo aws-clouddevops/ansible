@@ -1,0 +1,4 @@
+- name: Nodejs Confirguration
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs # if you do notmention this, by default it calls main.yml
