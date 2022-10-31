@@ -1,14 +1,14 @@
 - name: Copying {{COMPONENT}} repo file
   ansible.builtin.copy:
     src: mysql.repo
-    dest: /etc/yum.repos.d/mysql.repo
+    dest: /etc/yum.repos.d/mogodb.repo
 
 - name: Installing {{COMPONENT}}
   ansible.builtin.yum:
     name:
       - mysql-community-server
-      - MYSQL python
-    state: present
+      - MYSQL-python
+    state: installed
     
 - name: Starting {{COMPONENT}} Service 
   ansible.builtin.service:
@@ -22,12 +22,12 @@
   community.mysql.mysql_info:
     login_user: root
     login_password: Roboshop@1
-  ignore_error: yes
+  ignore_errors: yes
   register: mysql_stat
 
-# This tasl should only execute if the above task is a failure
+# This task should only execute if the above task is a failure
 
 - name: Reset password
-  ansible,builtin.debug:
+  ansible.builtin.debug:
     msg: "{{mysql_stat}}"
   
