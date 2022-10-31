@@ -1,0 +1,33 @@
+- name: Copying {{COMPONENT}} repo file
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: Installing {{COMPONENT}}
+  ansible.builtin.yum:
+    name:
+      - mysql-community-server
+      - MYSQL python
+    state: present
+    
+- name: Starting {{COMPONENT}} Service 
+  ansible.builtin.service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+# This has to fetch the password only when the defzult password is not changed
+
+- name: Check the {{COMPONENT}} password by fetching it from the logs
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: Roboshop@1
+  ignore_error: yes
+  register: mysql_stat
+
+# This tasl should only execute if the above task is a failure
+
+- name: Reset password
+  ansible,builtin.debug:
+    msg: "{{mysql_stat}}"
+  
