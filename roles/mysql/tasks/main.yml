@@ -37,7 +37,7 @@
         src: rootpassword.sql
         dest: /tmp/rootpassword.sql
     - name: Changing the password
-      ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{Roboshop@1.stdout}}" </tmp/rootpassword.sql
+      ansible.builtin.shell: mysql --connect-expired-password  -uroot -pRoboshop@1 </tmp/rootpassword.sql
 
 - name: Checking the validate_password plugin
   ansible.builtin.shell: echo show plugins | mysql -rroot -pRoboShop@1 | grep validate_password
