@@ -2,11 +2,11 @@
   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | sudo bash
 
 - name: Install NodeJS 
-  ansible.builtin.yum:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - nodejs
+  ansible.builtin.package:
+    name: "{{item}}"
+    state: present  
+  loop: 
+    - nodejs 
     - gcc-c++
 
 - name: Creating Application user

@@ -60,6 +60,7 @@ What is a Task? A Task is an action or actions that you wish to do
 ### How to run the Ansible play book?
 
 ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 01-sample.yml
+
 ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=catalogue roboshop.yml
 
 ### When to use remote_src
