@@ -1,66 +1,72 @@
-- name: Copying {{COMPONENT}} repo file
+- name: Coping {{COMPONENT}} repo file 
   ansible.builtin.copy:
-    src: mysql.repo
-    dest: /etc/yum.repos.d/mogodb.repo
+    src: mysql.repo 
+    dest: /etc/yum.repos.d/mongodb.repo  
 
 - name: Installing {{COMPONENT}}
   ansible.builtin.yum:
-    name:
-      - mysql-community-server
-      - MySQL-python
-    state: present
-    
-- name: Starting {{COMPONENT}} Service 
-  ansible.builtin.service:
+    name: 
+     - mysql-community-server
+     - MySQL-python
+    state: installed 
+
+# Added as Schema Load Needs PyMySQL
+- name: Installing PyMySQL
+  ansible.builtin.shell: pip3 install PyMySQL
+  
+- name: Starting MySQL Service
+  ansible.builtin.systemd:
     name: mysqld
-    state: started
+    state: restarted
     enabled: yes
+# This has to fetch the password only when the default password is not changed
 
-# This has to fetch the password only when the defzult password is not changed
-
-- name: Check the {{COMPONENT}} password by fetching it from the logs
+- name: Check the {{COMPONENT}} password by fetching from the logs 
   community.mysql.mysql_info:
-    login_user: root
-    login_password: RoboShop@1
-  ignore_errors: yes
-  register: mysql_stat
+    login_user: root 
+    login_password: RoboShop@1 
+  ignore_errors: yes  
+  register: mysql_stat 
 
-- name: Reset password
-  when: mysql_stat.failed
-  block:
-    - name: Reset password
+# This will only be executed only if the above is a failure
+- name: Reset Password 
+  when: mysql_stat.failed 
+  block: 
+    - name: Fetching password 
       ansible.builtin.shell: grep "temporary" /var/log/mysqld.log | head -n 1 | awk -F " " '{print $NF}'
       register: DEFAULT_ROOT_PASSWORD
 
-    - name: Copy the SQL password command file
-      ansible.builtin.copy:
-        src: rootpassword.sql
-        dest: /tmp/rootpassword.sql
-    - name: Changing the password
-      ansible.builtin.shell: mysql --connect-expired-password  -uroot -"{{DEFAULT_ROOT_PASSWORD.stdout}}" </tmp/rootpassword.sql
+    - name: Copy the SQL Password Command File 
+      ansible.builtin.copy: 
+        src: rootpassword.sql 
+        dest: /tmp/rootpassword.sql 
+    # This task should only execture if the above task is a failure.
+    - name: Changing password 
+      ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" < /tmp/rootpassword.sql 
+      ignore_errors: yes
 
-- name: Checking the validate_password plugin
-  ansible.builtin.shell: echo show plugins | mysql -rroot -pRoboShop@1 | grep validate_password
-  register: PLUGIN_INFO
-  ignore_errors: yes
+- name: Checking the validate_password plugin 
+  ansible.builtin.shell: echo show plugins | mysql -uroot -pRoboShop@1 | grep validate_password 
+  register: PLUGIN_INFO 
+  ignore_errors: yes 
 
-# This task will be executed if the above task is a failure: whichmeans the plugin exists
-
-- name: Uninstall the plugin
-  when: PLUGIN_INFO.rc == 0
-  block:
-    - name: Copy the SQL Uninstall password plugin file
-      ansible.builtin.copy:
+# This task should only execture if the above task is a failure: Which means plugin exists 
+- name: Uninstalling the plugin  
+  when: PLUGIN_INFO.rc == 0 
+  block: 
+    - name: Copy the SQL Unistall Password Plugin file 
+      ansible.builtin.copy: 
         src: password-validate.sql
         dest: /tmp/password-validate.sql
 
-    - name: Uninstalling the plugin
-      ansible.builtin.shell: mysql --connect-expired-password -uroot -pRoboShop@1 < /tmp/password-validate.sql 
+    - name: Uninstalling the Plugin 
+      ansible.builtin.shell: mysql --connect-expired-password  -uroot -pRoboShop@1 < /tmp/password-validate.sql
 
-- name: Donwload and extract {{COMPONENT}}
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: download-and-extract # if you do notmention this, by default it calls main.yml
+- name: Download and extract {{COMPONENT}}
+  ansible.builtin.unarchive:
+    src: https://github.com/stans-robot-project/{{COMPONENT}}/archive/main.zip
+    dest: /tmp 
+    remote_src: yes
 
 - name: Load the {{COMPONENT}} schema 
   community.mysql.mysql_db:
@@ -68,7 +74,7 @@
     login_user: root 
     login_password: RoboShop@1
     name: all 
-    target: /tmp/mysql-main/shipping.sql
+    target: /tmp/mysql-main/shipping.sql 
 
 
 # This task should only execute if the above task is a failure

@@ -1,1 +1,1 @@
-uninstall plugin validate_password
+uninstall plugin validate_password;
