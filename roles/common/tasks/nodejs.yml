@@ -3,10 +3,10 @@
 
 - name: Install NodeJS 
   ansible.builtin.yum:
-    name: "{{item}}"
-    state: present  
-  loop: 
-    - nodejs 
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - nodejs
     - gcc-c++
 
 - name: Creating Application user
