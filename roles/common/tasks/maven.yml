@@ -14,7 +14,7 @@
     tasks_from: download-and-extract
 
 - name: Generating package
-  ansible:builtin.shell: mvn clean package && mv target/shipping-1.0.jar shipping.jar
+  ansible.builtin.shell: mvn clean package && mv target/shipping-1.0.jar shipping.jar
   become_user: "{{APPUSER}}"
   args:
     chdir: /home/{{APPUSER}}/{{COMPONENT}}/
