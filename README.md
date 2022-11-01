@@ -64,3 +64,6 @@ ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e 
 
 ### When to use remote_src
 # When we say remote_src yes the download happens on the remote machine. If this is not mentioned download happens on the same machine on which we run the command.
+
+### How do you prevent a service from restarting?
+# We use handlers to perform this
