@@ -33,6 +33,10 @@
       - catalogue 
       - users
 
+- name:  Configuring the system name
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: set-hostname
 
 # - name: Loading cataloge schema
 #   community.mongodb.mongodb_shell:

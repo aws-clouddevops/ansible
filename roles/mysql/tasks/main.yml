@@ -76,7 +76,10 @@
     name: all 
     target: /tmp/mysql-main/shipping.sql 
 
-
+- name:  Configuring the system name
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: set-hostname
 # This task should only execute if the above task is a failure
 
 # - name: Reset password
