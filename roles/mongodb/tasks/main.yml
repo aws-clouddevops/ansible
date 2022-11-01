@@ -30,7 +30,6 @@
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes 
   loop: #with item is the key word for loop earlier now its loop itself
-
       - catalogue 
       - user
 
