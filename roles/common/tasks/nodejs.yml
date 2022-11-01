@@ -4,6 +4,7 @@
 - name: Install NodeJS 
   community.general.npm:
     name: "{{item}}"
+    global: true
     state: present  
   loop: 
     - nodejs 
