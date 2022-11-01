@@ -1,20 +1,20 @@
 - name: Installing Python3
   ansible.builtin.yum: 
-    name:
+    name: 
       - python36
       - gcc
-      - python-devel
-    state: installed
+      - python3-devel
+    state: installed 
 
-- name: Creating Application user
+- name: Creating application user
   ansible.builtin.include_role:
-    name: common
+    name: common 
     tasks_from: create-user
 
-- name: Donwload and extract {{COMPONENT}}
+- name:  Download and extract {{COMPONENT}}
   ansible.builtin.include_role:
-    name: common
-    tasks_from: download-and-extract
+    name: common 
+    tasks_from: download-and-extract 
 
 - name: Installing {{COMPONNET}} Dependencies 
   ansible.builtin.pip: 
