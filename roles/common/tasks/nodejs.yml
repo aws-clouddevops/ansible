@@ -2,10 +2,9 @@
   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | sudo bash
 
 - name: Install NodeJS 
-  community.general.npm:
+  ansible.builtin.package:
     name: "{{item}}"
     state: present 
-    path: /home/{{COMPONENT}} 
   loop: 
     - nodejs 
     - gcc-c++
