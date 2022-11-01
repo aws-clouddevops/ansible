@@ -22,13 +22,13 @@
      executable: pip3
 
 - name: Update GID in {{COMPONENT}}
-  ansible.builtin.lineinfiles:
+  ansible.builtin.lineinfile:
     path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
     regexp: '^gid'
     line: gid = {{APPUSER_REGISTER.group}}
 
 - name: Update UID in {{COMPONENT}}
-  ansible.builtin.lineinfiles:
+  ansible.builtin.lineinfile:
     path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
     regexp: '^uid'
     line: uid = {{APPUSER_REGISTER.uid}}
