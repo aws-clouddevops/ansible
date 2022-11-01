@@ -61,3 +61,6 @@ What is a Task? A Task is an action or actions that you wish to do
 
 ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 01-sample.yml
 ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=catalogue roboshop.yml
+
+### When to use remote_src
+# When we say remote_src yes the download happens on the remote machine. If this is not mentioned download happens on the same machine on which we run the command.
