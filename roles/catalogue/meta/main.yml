@@ -1,4 +1,4 @@
 # It tells the role catalogue. before you run catalogue, Monf=goDB should be running
-
-dependencies:
-  -role: mongodb
+# Example of role dependency
+# dependencies:
+#   -role: mongodb

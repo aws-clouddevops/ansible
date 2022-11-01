@@ -75,3 +75,9 @@ for i in mongodb catalogue redis mysql cart frontend; do ansible-playbook -i inv
 # for i in mongodb catalogue redis mysql cart frontend ( Any component can be mentioned here)
 
 Catalogue component's dependency is MongoDB -- It can be done using meta argument inside the  meta argument. Meta argument helps you always in creating such dependencies. 
+
+#### Ansible-Pull
+ 
+ for Ansible pull to work you need to ensure that the machine which executes gthe pull command has Ansible Installed
+
+ ## Install Ansible: curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/ansible/install.sh | sudo bash
