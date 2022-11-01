@@ -3,7 +3,7 @@
     name:
       - python36
       - gcc
-      - python-deve1
+      - python-devel
     state: installed
 
 - name: Creating Application user
