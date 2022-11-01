@@ -4,8 +4,8 @@
 - name: Install NodeJS 
   community.general.npm:
     name: "{{item}}"
-    global: true
-    state: present  
+    state: present 
+    path: /home/{{COMPONENT}} 
   loop: 
     - nodejs 
     - gcc-c++
