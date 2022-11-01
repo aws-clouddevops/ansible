@@ -1,39 +1,40 @@
 - name: Installing Nginx
   ansible.builtin.package:
     name: nginx 
-    state: present
+    state: present 
 
-- name: Donwload and extract {{COMPONENT}}
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: download-and-extract 
-
-- name: Cleanup of the old file
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: absent
-
-- name: Copying frontend content to nginx path  
-  ansible.builtin.copy:
-    src: /tmp/frontend-main/static/
-    dest: /usr/share/nginx/html
-    remote_src: yes
-
-- name: Copying Proxy config  
-  ansible.builtin.copy:
-    src: roboshop.conf
-    dest: /etc/nginx/default.d/roboshop.conf
-  notify: Restarting Nginx Service
-
-- name: Starting Nginx Service  
+- name: Starting Nginx Service 
   ansible.builtin.service:
-    name: nginx
-    state: restarted
+    name: nginx 
+    state: started
     enabled: yes
 
-- name:  Configuring the system name
+- name:  Download and extract {{COMPONENT}}
   ansible.builtin.include_role:
-    name: common
+    name: common 
+    tasks_from: download-and-extract  
+
+# Uncomment it only for downloading from Github
+# - name: Cleanup of old html content 
+#   ansible.builtin.file:
+#     path: /usr/share/nginx/html
+#     state: absent
+
+# - name: Coping frotend context to nginx path 
+#   ansible.builtin.copy:
+#     src: /tmp/frontend-main/static/
+#     dest: /usr/share/nginx/html
+#     remote_src: yes
+
+- name: Coping proxy config 
+  ansible.builtin.template:
+    src: roboshop.conf 
+    dest: /etc/nginx/default.d/roboshop.conf
+  notify: Restarting Nginx Service 
+  
+- name: Configuing system name 
+  ansible.builtin.include_role:
+    name: common 
     tasks_from: set-hostname
   
     
