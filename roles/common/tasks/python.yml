@@ -16,8 +16,8 @@
     name: common
     tasks_from: download-and-extract
 
-- name: Installing {{COMPONENT}} Dependencies
-  ansible.builtin.pip:
-    requirements: /home/{{APPUSER}}/{{COMPONENT}}/requirements.txt
-    executable: pip3
+- name: Installing {{COMPONNET}} Dependencies 
+  ansible.builtin.pip: 
+     requirements: /home/{{APPUSER}}/{{COMPONENT}}/requirements.txt
+     executable: pip3
 
