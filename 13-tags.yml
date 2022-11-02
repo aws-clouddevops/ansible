@@ -1,0 +1,32 @@
+- name: Ansible tags 
+  hosts: localhost 
+  tasks:
+    - name: Performing Webserver Installation 
+      debug: 
+        msg: WebServer Installation in progress
+      tags: web 
+
+    - name: Webserver installation is Completed 
+      debug: 
+        msg: WebServer Installation is completed
+      tags: web 
+
+    - name: Performing AppServer Installation 
+      debug: 
+        msg: APP Installation  in progress
+      tags: app 
+
+    - name: AppServer installation is Completed 
+      debug: 
+        msg: AppServer Installation is completed
+      tags: app 
+
+    - name: Performing DB Installation 
+      debug: 
+        msg: DB Installation  in progress
+      tags: db   
+
+    - name: DB installation is Completed 
+      debug: 
+        msg: DB Installation is completed
+      tags: db   
