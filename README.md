@@ -69,9 +69,16 @@ ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e 
 ### How do you prevent a service from restarting?
 # We use handlers to perform this
 
-### To run a loop we use FOR loop
+### FOR LOOP
 
-for i in mongodb catalogue redis mysql cart frontend; do ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=$i roboshop.yml; done
+## To run a loop we use FOR loop
+
+for i in mongodb catalogue redis cart user mysql shipping frontend; do ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=$i roboshop.yml; done
+
+With Environments,
+
+git pull ; for i in mongodb catalogue redis cart user mysql shipping rabbitmq payment frontend; do ansible-playbook -i dev-inv -e ansible_user=centos -e ansible_password=DevOps321 -e ENV=dev -e COMPONENT=$i roboshop.yml; done
+
 
 # for i in mongodb catalogue redis mysql cart frontend ( Any component can be mentioned here)
 
