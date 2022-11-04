@@ -89,3 +89,8 @@ Catalogue component's dependency is MongoDB -- It can be done using meta argumen
  for Ansible pull to work you need to ensure that the machine which executes gthe pull command has Ansible Installed
 
  ## Install Ansible: curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/ansible/install.sh | sudo bash
+
+ ### ANSIBLE TAGS
+
+ ansible-playbook 13-tags.yml  --skip-tags  web
+ansible-playbook 13-tags.yml  -t web
