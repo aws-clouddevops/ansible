@@ -86,9 +86,13 @@ Catalogue component's dependency is MongoDB -- It can be done using meta argumen
 
 #### Ansible-Pull
  
- for Ansible pull to work you need to ensure that the machine which executes gthe pull command has Ansible Installed
+ for Ansible pull to work you need to ensure that the machine which executes gthe pull command has Ansible Installed on the machine.
 
  ## Install Ansible: curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/ansible/install.sh | sudo bash
+
+---
+ ansible-pull -U https://github.com/aws-clouddevops/ansible.git -e COMPONENT=frontend -e ENV=dev roboshop-pull.yml
+ ---
 
  ### ANSIBLE TAGS
 
