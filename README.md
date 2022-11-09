@@ -101,3 +101,12 @@ ansible-playbook 13-tags.yml  -t web
 
 ### TEST COMMITS FOR ANSIBLE PULL
 Ansible pull needs anisble to be installed.
+
+git add .
+git commit -m "Message"
+git push origin feature/abc-123(name if the feature branch)
+Origin-is the name of the remote repo name (Short Name)
+origin moves the changes to the branch if its available. If the feature branch is not there it will be created and the changes are moved
+
+## git checout (Is used to move to other branches)
+
