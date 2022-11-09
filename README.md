@@ -75,7 +75,7 @@ ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e 
 
 for i in mongodb catalogue redis cart user mysql shipping frontend; do ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=$i roboshop.yml; done
 
-With Environments,
+With Environments
 
 git pull ; for i in mongodb catalogue redis cart user mysql shipping rabbitmq payment frontend; do ansible-playbook -i dev-inv -e ansible_user=centos -e ansible_password=DevOps321 -e ENV=dev -e COMPONENT=$i roboshop.yml; done
 
@@ -98,3 +98,6 @@ Catalogue component's dependency is MongoDB -- It can be done using meta argumen
 
  ansible-playbook 13-tags.yml  --skip-tags  web
 ansible-playbook 13-tags.yml  -t web
+
+### TEST COMMITS FOR ANSIBLE PULL
+Ansible pull needs anisble to be installed.
