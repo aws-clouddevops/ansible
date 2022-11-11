@@ -21,7 +21,7 @@ pipeline {
             }
         }
         stage('main') {               // Runs only when its a main branch
-            when { expression {TAG_NAME != null} } // We are checking whether the value of TAG_NAME is null or not
+            when { expression {env.TAG_NAME != null} } // We are checking whether the value of TAG_NAME is null or not
             steps {
                 sh "env"
                 sh "echo I am a Main Branch"
