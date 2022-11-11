@@ -21,7 +21,7 @@ pipeline {
             }
         }
         stage('main') {               // Runs only when its a main branch
-            when { branch 'main' }
+            when { expression {TAG_NAME == ".*"} }
             steps {
                 sh "env"
                 sh "echo I am a Main Branch"
