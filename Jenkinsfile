@@ -21,7 +21,7 @@ pipeline {
             }
         }
         stage('main') {               // Runs only when its a main branch
-            when { expression {TAG_NAME ==~ ".*"} }
+            when { expression {TAG_NAME != null} } // We are checking whether the value of TAG_NAME is null or not
             steps {
                 sh "env"
                 sh "echo I am a Main Branch"
@@ -29,3 +29,5 @@ pipeline {
         }
     }
 }
+
+// TAG_NAME Variable only comes up when you run it again the TAG_NAME rest of thr times. it wont be there
