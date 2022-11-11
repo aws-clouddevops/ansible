@@ -9,13 +9,15 @@ pipeline {
     stages {
 
         stage('Perform Lkint-checks') { // runs only when its a Feature branch
+            when { branch pattern: "feature-*", comparator: "REGEXP" }
             steps {
                 sh "env"
                 sh "echo Performing Lint Checks"
             }
         }
         stage('Do a DRY-RUN') { // Runs only when its a PR
-            steps {
+             when { branch pattern: "PR-*", comparator: "REGEXP" }
+             steps {
                 sh "ansible-playbook robot-dryrun.yml -e COMPONENT=mongodb -e ENV=dev -e ansible_user=${SSH_CRED_USR} -e ansible_password=${SSH_CRED_PSW}"
             }
         }
