@@ -1,5 +1,5 @@
 - name: Configure the yum repo
-  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | sudo bash
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash
 
 - name: Install NodeJS 
   ansible.builtin.package:
