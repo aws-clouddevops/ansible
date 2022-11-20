@@ -19,18 +19,20 @@
   ansible.builtin.file:
     path: /home/{{APPUSER}}/{{COMPONENT}}/
     state: absent
-  
-- name: Donwload and extract {{COMPONENT}}
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: download-and-extract
 
-- name: Copying {{COMPONENT}} to {{APPUSER}}
-  ansible.builtin.copy:
-    src: /tmp/{{COMPONENT}}-main/
-    dest: /home/{{APPUSER}}/{{COMPONENT}}
-    remote_src: yes
-  become_user: "{{APPUSER}}"
+# **** Uncomment only If you wish to do the deployment by taking the code from the GITHUB ****
+
+# - name: Donwload and extract {{COMPONENT}}
+#   ansible.builtin.include_role:
+#     name: common
+#     tasks_from: download-and-extract
+
+# - name: Copying {{COMPONENT}} to {{APPUSER}}
+#   ansible.builtin.copy:
+#     src: /tmp/{{COMPONENT}}-main/
+#     dest: /home/{{APPUSER}}/{{COMPONENT}}
+#     remote_src: yes
+#   become_user: "{{APPUSER}}"
 
 - name: Install packages based on package.json.
   community.general.npm:
