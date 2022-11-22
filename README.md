@@ -8,6 +8,8 @@ Ansible 6.0 is Python3 based and installation of Python 3 is needed
 
 ## The default group in this file is 'all' which is included all the DNS or IP's that you supplied
 
+### Ansible can be operated in 2 ways
+
  * Manual way : Executing the commads and can work one command at a time
  * Automated wat - Using Ansible Playbook
 
