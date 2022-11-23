@@ -40,9 +40,9 @@
 #     remote_src: yes
 #   become_user: "{{APPUSER}}"
 
-- name: Install packages based on package.json.
-  community.general.npm:
-    path: /home/{{APPUSER}}/{{COMPONENT}}/
+# - name: Install packages based on package.json.
+#   community.general.npm:
+#     path: /home/{{APPUSER}}/{{COMPONENT}}/
 
 - name:  Configuring the {{COMPONENT}} svc
   ansible.builtin.include_role:
