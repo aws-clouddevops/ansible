@@ -11,7 +11,7 @@
 - name: Starting {{COMPONENT}} Service
   ansible.builtin.systemd:
     name: "{{COMPONENT}}-server"
-    state: staerted
+    state: started
     enabled: yes
 
 - name: Adding {{COMPONENT}} App User
