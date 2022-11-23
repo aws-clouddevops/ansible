@@ -1,1 +1,2 @@
 APPUSER: roboshop
+APP_LOCATION: /home/{{APPUSER}}/{{COMPONENT}}/
