@@ -13,11 +13,13 @@
     name: common
     tasks_from: download-and-extract
 
-- name: Generating package
-  ansible.builtin.shell: mvn clean package && mv target/shipping-1.0.jar shipping.jar
-  become_user: "{{APPUSER}}"
-  args:
-    chdir: /home/{{APPUSER}}/{{COMPONENT}}/
+# ***Uncomment this if you dont have nexus ***
+
+# - name: Generating package
+#   ansible.builtin.shell: mvn clean package && mv target/shipping-1.0.jar shipping.jar
+#   become_user: "{{APPUSER}}"
+#   args:
+#     chdir: /home/{{APPUSER}}/{{COMPONENT}}/
 
 - name:  Configuring the {{COMPONENT}} svc
   ansible.builtin.include_role:
