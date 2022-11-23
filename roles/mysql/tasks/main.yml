@@ -76,26 +76,7 @@
     name: all 
     target: /tmp/mysql-main/shipping.sql 
 
-- name:  Configuring the system name
+- name: Configuing system name 
   ansible.builtin.include_role:
-    name: common
+    name: common 
     tasks_from: set-hostname
-# This task should only execute if the above task is a failure
-
-# - name: Reset password
-#   ansible.builtin.shell: grep "temporary" /var/log/mysqld.log | head -n 1 | awk -F " " '{print $NF}'
-#   register: DEFAULT_ROOT_PASSWORD
-#   when: mysql_stat.failed
-
-# - name: Copy the SQL password command file
-#   ansible.builtin.copy:
-#     src: rootpassword.sql
-#     dest: /tmp/rootpassword.sql
-#   when: mysql_stat.failed
-
-# - name: Changing the password
-#   ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" </tmp/rootpassword.sql
-#   when: mysql_stat.failed 
-
-
-  
