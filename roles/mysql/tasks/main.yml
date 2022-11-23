@@ -42,7 +42,7 @@
         dest: /tmp/rootpassword.sql 
     # This task should only execture if the above task is a failure.
     - name: Changing password 
-      ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" < /tmp/rootpassword.sql 
+      ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"${{DEFAULT_ROOT_PASSWORD.stdout}}" < /tmp/rootpassword.sql 
       ignore_errors: yes
 
 - name: Checking the validate_password plugin 
