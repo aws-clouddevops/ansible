@@ -24,8 +24,8 @@
   ansible.builtin.include_role:
      name: common
      tasks_from: download-and-extract
-  become_user: "{{APPUSER}}"
   
+
 # **** Uncomment only If you wish to do the deployment by taking the code from the GITHUB ****
 
 # - name: Donwload and extract {{COMPONENT}}

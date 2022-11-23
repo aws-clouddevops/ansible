@@ -23,6 +23,7 @@
     src: http://172.31.14.57:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: "{{APP_LOCATION}}"
     remote_src: yes
+  become_user: "{{APPUSER}}"
 
 # Uncomment this only for Downloading the code from Nexus
 
