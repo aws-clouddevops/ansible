@@ -89,8 +89,8 @@ Catalogue component's dependency is MongoDB -- It can be done using meta argumen
  ## Install Ansible: curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/ansible/install.sh | sudo bash
 
 ---
- ansible-pull -U https://github.com/aws-clouddevops/ansible.git -e COMPONENT=frontend -e ENV=dev roboshop-pull.yml
- ---
+
+ --- ansible-pull -U https://github.com/aws-clouddevops/ansible.git -e COMPONENT=frontend -e ENV=dev roboshop-pull.yml
 
  ### ANSIBLE TAGS
 
