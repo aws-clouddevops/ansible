@@ -3,6 +3,12 @@
     name: nginx 
     state: present 
 
+- name: Starting Nginx Service 
+  ansible.builtin.service:
+    name: nginx 
+    state: started
+    enabled: yes
+
 - name:  Download and extract {{COMPONENT}}
   ansible.builtin.include_role:
     name: common 
@@ -26,12 +32,6 @@
     src: roboshop.conf 
     dest: /etc/nginx/default.d/roboshop.conf
   notify: Restarting Nginx Service 
-
-- name: Starting Nginx Service 
-  ansible.builtin.service:
-    name: nginx 
-    state: started
-    enabled: yes
   
 - name: Configuing system name 
   ansible.builtin.include_role:
