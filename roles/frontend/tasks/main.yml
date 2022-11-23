@@ -3,18 +3,13 @@
     name: nginx 
     state: present 
 
-- name: Starting Nginx Service 
-  ansible.builtin.service:
-    name: nginx 
-    state: started
-    enabled: yes
-
 - name:  Download and extract {{COMPONENT}}
   ansible.builtin.include_role:
     name: common 
     tasks_from: download-and-extract  
 
 # Uncomment it only for downloading from Github
+
 # - name: Cleanup of old html content 
 #   ansible.builtin.file:
 #     path: /usr/share/nginx/html
@@ -31,6 +26,12 @@
     src: roboshop.conf 
     dest: /etc/nginx/default.d/roboshop.conf
   notify: Restarting Nginx Service 
+
+- name: Starting Nginx Service 
+  ansible.builtin.service:
+    name: nginx 
+    state: started
+    enabled: yes
   
 - name: Configuing system name 
   ansible.builtin.include_role:
