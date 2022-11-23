@@ -16,8 +16,9 @@
   ansible.builtin.file:
     path: "{{APP_LOCATION}}"
     state: directory
-  ignore_errors: yes
   become_user: "{{APPUSER}}"
+  ignore_errors: yes
+  
 
 - name: Download and extract {{COMPONENT}}
   ansible.builtin.unarchive:
