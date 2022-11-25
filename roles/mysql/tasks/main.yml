@@ -25,7 +25,7 @@
   community.mysql.mysql_info:
     login_user: root 
     login_password: RoboShop@1 
-  ignore_errors: yes  
+  ignore_errors: true  
   register: mysql_stat 
 
 # This will only be executed only if the above is a failure
@@ -43,12 +43,12 @@
     # This task should only execture if the above task is a failure.
     - name: Changing password 
       ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"${{DEFAULT_ROOT_PASSWORD.stdout}}" < /tmp/rootpassword.sql 
-      ignore_errors: yes
+      ignore_errors: true
 
 - name: Checking the validate_password plugin 
   ansible.builtin.shell: echo show plugins | mysql -uroot -pRoboShop@1 | grep validate_password 
   register: PLUGIN_INFO 
-  ignore_errors: yes 
+  ignore_errors: true 
 
 # This task should only execture if the above task is a failure: Which means plugin exists 
 - name: Uninstalling the plugin  
