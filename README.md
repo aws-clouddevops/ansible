@@ -105,7 +105,7 @@ Ansible pull needs anisble to be installed.
 1. Launch the machine with our lab image
 2. Install ansible with curl command and also install boto : $ sudo pip3 install boto
 3. Once Installed , make an AMI and ensure that comes to available state
-4. Going forward for all the machines that needs needs ansible use this AMI.
+4. Going forward for all the machines that needs ansible use this AMI.
 5. Which will be having ANSIBLE installed on it.
 
 
