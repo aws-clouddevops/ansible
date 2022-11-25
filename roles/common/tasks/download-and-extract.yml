@@ -10,14 +10,14 @@
   ansible.builtin.file:
     path: "{{APP_LOCATION}}"
     state: absent
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Cleanup App Location 
   ansible.builtin.file:
     path: "{{APP_LOCATION}}"
     state: directory
   become_user: "{{APPUSER}}"
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Download and extract {{COMPONENT}}
   ansible.builtin.unarchive:
