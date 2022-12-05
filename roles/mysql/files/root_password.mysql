@@ -1,1 +1,1 @@
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1';
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('RoboShop@1');
